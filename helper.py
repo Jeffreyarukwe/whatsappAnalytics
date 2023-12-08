@@ -22,11 +22,7 @@ def fetch_stats(selected_user, df):
         words.extend(message.split())
 
     # fetch number of media messages
-    num_media_messages = (df[df['message'] == '‎image omitted\n'].shape[0] + df[df['message'] ==
-                                                                                '‎video omitted\n'].shape[0] +
-                          df[df['message'] == '‎sticker omitted\n'].shape[0] +
-                          df[df['message'] == '‎audio omitted\n'].shape[0] +
-                          df[df['message'] == '‎GIF omitted\n'].shape[0])
+    num_media_messages = (df[df['message'] == '‎image omitted\n'].shape[0]) + (df[df['message'] == '‎video omitted\n'].shape[0]) + (df[df['message'] == '‎sticker omitted\n'].shape[0]) + (df[df['message'] == '‎audio omitted\n'].shape[0]) + (df[df['message'] == '‎GIF omitted\n'].shape[0])
 
     # fetch number of links shared
     links = []
@@ -42,16 +38,6 @@ def most_busy_users(df):
     df = round((df['user'].value_counts() / df.shape[0]) * 100, 2).reset_index().rename(
         columns={'index': 'name', 'user': 'percent'})
     return x, df
-
-
-# def remove_stop_words(message):
-#     f = open('stop_hinglish.txt', 'r')
-#     stop_words = f.read()
-#     y = []
-#     for word in message.lower().split():
-#         if word not in stop_words:
-#             y.append(word)
-#     return " ".join(y)
 
 
 def remove_punctuation(message):

@@ -3,7 +3,7 @@ import preprocessor, helper  # local file func
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-st.sidebar.title("WhatsApp Chat Analyzer")
+st.sidebar.title("WhatsApp Chat Analyzer (by Jeffrey Arukwe)")
 
 # create a file uploaded to upload txt file
 uploaded_file = st.sidebar.file_uploader("Choose a file")
@@ -21,7 +21,7 @@ if uploaded_file is not None:
     user_list.remove('group_notification')
     user_list.sort()
     user_list.insert(0, 'Overall')
-    selected_user = st.sidebar.selectbox("Show analysis wrt", user_list)
+    selected_user = st.sidebar.selectbox("Show analysis with respect to: ", user_list)
 
     # button to analyze chat
     if st.sidebar.button("Show Analysis"):
@@ -54,7 +54,7 @@ if uploaded_file is not None:
         st.title(":blue[Daily Timeline]")
         daily_timeline = helper.daily_timeline(selected_user, df)
         fig, ax = plt.subplots()
-        ax.plot(daily_timeline['only_date'], daily_timeline['message'], color='black')
+        ax.plot(daily_timeline['only_date'], daily_timeline['message'], color='blue')
         plt.xticks(rotation='vertical')
         st.pyplot(fig)
 
